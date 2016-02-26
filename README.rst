@@ -13,7 +13,7 @@ anapioficeandfire-python
         :alt: Documentation Status
 
 
-A Python helper library for anapioficeandfire.com
+A Python helper library for anapioficeandfire.com - The world's greatest API for quantified and structured data from the universe of Ice and Fire.
 
 * Free software: BSD license
 * Documentation: https://anapioficeandfire-python.readthedocs.org.
