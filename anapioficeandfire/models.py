@@ -6,7 +6,7 @@ class BaseModel(object):
     def __init__(self, api_data):
         json_data = json.loads(api_data)
 
-        for key, value in json_data:
+        for key, value in json_data.items():
             setattr(self, key, value)
 
 

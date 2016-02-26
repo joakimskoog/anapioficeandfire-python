@@ -1,15 +1,31 @@
 # -*- coding: utf-8 -*-
 
-from anapioficeandfire.models import (
-    Book,
-    Character,
-    House
-)
-from anapioficeandfire import settings
+try:
+    from anapioficeandfire.models import (
+        Book,
+        Character,
+        House
+    )
+    from anapioficeandfire.utils import query
+    from anapioficeandfire.settings import API_BASE_URL
+except:
+    import settings
+    from models import (
+        Book,
+        Character,
+        House
+    )
+    from utils import query
+
+
+def _get(id, model_type):
+    result = query("{0}/{1}/{2}".format(API_BASE_URL, model_type,str(id)))
+    return result
 
 def get_book(book_id):
     ''' Return a single book '''
-    return None
+    result = _get(book_id, "books")
+    return Book(result.content)
 
 
 def get_character(character_id):
