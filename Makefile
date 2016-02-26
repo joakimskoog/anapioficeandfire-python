@@ -49,16 +49,12 @@ lint:
 	flake8 anapioficeandfire-python tests
 
 test:
-	python setup.py test
-
-test-all:
-	tox
+	nosetests tests/test_anapioficeandfire-python.py
 
 coverage:
-	coverage run --source anapioficeandfire-python setup.py test
-	coverage report -m
+	nosetests tests/test_anapioficeandfire-python.py --with-coverage --cover-package=anapioficeandfire-python
 	coverage html
-	$(BROWSER) htmlcov/index.html
+	open htmlcov/index.html
 
 docs:
 	rm -f docs/anapioficeandfire-python.rst
