@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# anapioficeandfire-python documentation build configuration file, created by
+# anapioficeandfire documentation build configuration file, created by
 # sphinx-quickstart on Tue Jul  9 22:26:36 2013.
 #
 # This file is execfile()d with the current directory set to its
@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'anapioficeandfire-python'
+project = u'anapioficeandfire'
 copyright = u'2016, Joakim Skoog'
 
 # The version info for the project you're documenting, acts as replacement
@@ -208,8 +208,8 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ('index', 'anapioficeandfire-python.tex',
-     u'anapioficeandfire-python Documentation',
+    ('index', 'anapioficeandfire.tex',
+     u'anapioficeandfire Documentation',
      u'Joakim Skoog', 'manual'),
 ]
 
@@ -239,8 +239,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'anapioficeandfire-python',
-     u'anapioficeandfire-python Documentation',
+    ('index', 'anapioficeandfire',
+     u'anapioficeandfire Documentation',
      [u'Joakim Skoog'], 1)
 ]
 
@@ -254,10 +254,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'anapioficeandfire-python',
-     u'anapioficeandfire-python Documentation',
+    ('index', 'anapioficeandfire',
+     u'anapioficeandfire Documentation',
      u'Joakim Skoog',
-     'anapioficeandfire-python',
+     'anapioficeandfire',
      'One line description of project.',
      'Miscellaneous'),
 ]

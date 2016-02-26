@@ -46,20 +46,20 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 anapioficeandfire-python tests
+	flake8 anapioficeandfire tests
 
 test:
-	nosetests tests/test_anapioficeandfire-python.py
+	nosetests tests/test_anapioficeandfire.py
 
 coverage:
-	nosetests tests/test_anapioficeandfire-python.py --with-coverage --cover-package=anapioficeandfire-python
+	nosetests tests/test_anapioficeandfire.py --with-coverage --cover-package=anapioficeandfire
 	coverage html
 	open htmlcov/index.html
 
 docs:
 	rm -f docs/anapioficeandfire-python.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ anapioficeandfire-python
+	sphinx-apidoc -o docs/ anapioficeandfire
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

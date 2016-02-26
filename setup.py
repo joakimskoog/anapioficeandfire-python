@@ -23,7 +23,7 @@ test_requirements = [
 ]
 
 setup(
-    name='anapioficeandfire-python',
+    name='anapioficeandfire',
     version='0.1.0',
     description="A Python helper library for anapioficeandfire.com",
     long_description=readme + '\n\n' + history,
@@ -31,15 +31,15 @@ setup(
     author_email='joakimskooog@gmail.com',
     url='https://github.com/joakimskoog/anapioficeandfire-python',
     packages=[
-        'anapioficeandfire-python',
+        'anapioficeandfire',
     ],
-    package_dir={'anapioficeandfire-python':
-                 'anapioficeandfire-python'},
+    package_dir={'anapioficeandfire':
+                 'anapioficeandfire'},
     include_package_data=True,
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='anapioficeandfire-python',
+    keywords='anapioficeandfire',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
