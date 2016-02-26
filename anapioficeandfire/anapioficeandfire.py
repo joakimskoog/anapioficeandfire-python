@@ -7,7 +7,7 @@ try:
         House
     )
     from anapioficeandfire.utils import query
-    from anapioficeandfire.settings import API_BASE_URL
+    from anapioficeandfire import settings
 except:
     import settings
     from models import (
@@ -19,7 +19,7 @@ except:
 
 
 def _get(id, model_type):
-    result = query("{0}/{1}/{2}".format(API_BASE_URL, model_type,str(id)))
+    result = query("{0}/{1}/{2}".format(settings.API_BASE_URL, model_type,str(id)))
     return result
 
 def get_book(book_id):
