@@ -8,7 +8,7 @@ Tests for `anapioficeandfire` module.
 """
 
 import unittest
-from anapioficeandfire import anapioficeandfire
+import anapioficeandfire
 
 from anapioficeandfire.models import (
     Book,
