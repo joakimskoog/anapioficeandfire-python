@@ -24,17 +24,19 @@ def _get(id, model_type):
 
 def get_book(book_id):
     ''' Return a single book '''
-    result = _get(book_id, "books")
+    result = _get(book_id, 'books')
     return Book(result.content)
 
 
 def get_character(character_id):
     ''' Return a single character '''
-    return None
+    result = _get(character_id, 'characters')
+    return Character(result.content)
 
 
 def get_house(house_id):
     ''' Return a single house '''
-    return None
+    result = _get(house_id, 'houses')
+    return House(result.content)
 
 
