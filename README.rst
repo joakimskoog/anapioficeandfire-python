@@ -9,7 +9,7 @@ anapioficeandfire-python
         :target: https://travis-ci.org/joakimskoog/anapioficeandfire-python
 
 .. image:: https://readthedocs.org/projects/anapioficeandfire-python/badge/?version=latest
-        :target: https://readthedocs.org/projects/anapioficeandfire-python/?badge=latest
+        :target: http://anapioficeandfire-python.readthedocs.org/en/latest/?badge=latest
         :alt: Documentation Status
 
 
