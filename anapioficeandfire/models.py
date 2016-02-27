@@ -1,4 +1,34 @@
-import ujson as json
+try:
+    from anapioficeandfire.utils import query
+    import ujson as json
+except:
+    import settings
+    from utils import query
+
+
+class ModelCursor(object):
+    def __init__(self, urls, model):
+        self.urls = urls
+        self.total_number_of_urls = len(urls)
+        self.model = model
+
+
+    def __iter__(self):
+        self.current_index = 0
+        return self
+
+
+    def __next__(self):
+        if self.current_index == self.total_number_of_urls:
+            raise StopIteration
+
+        data = query(self.urls[self.current_index])
+
+        if len(data.content) == 0:
+            raise StopIteration
+
+        self.current_index += 1
+        return self.model(data.content)
 
 
 class BaseModel(object):
@@ -17,11 +47,11 @@ class Book(BaseModel):
 
 
     def get_characters(self):
-        return None
+        return ModelCursor(self.characters, Character)
 
 
     def get_pov_characters(self):
-        return None
+        return ModelCursor(self.povCharacters, Character)
 
 
 class Character(BaseModel):
@@ -31,15 +61,15 @@ class Character(BaseModel):
 
 
     def get_allegiances(self):
-        return None
+        return ModelCursor(self.allegiances, House)
 
 
     def get_books(self):
-        return None
+        return ModelCursor(self.books, Book)
 
 
     def get_pov_books(self):
-        return None
+        return ModelCursor(self.povBooks, Book)
 
 
 class House(BaseModel):
@@ -49,27 +79,31 @@ class House(BaseModel):
 
 
     def get_current_lord(self):
-        return None
+        response = query(self.currentLord)
+        return Character(response.content)
 
 
     def get_heir(self):
-        return None
+        response = query(self.heir)
+        return Character(response.content)
 
 
     def get_overlord(self):
-        return None
+        response = query(self.overlord)
+        return House(response.content)
 
 
     def get_founder(self):
-        return None
+        response = query(self.founder)
+        return Character(response.content)
 
 
     def get_cadet_branches(self):
-        return None
+        return ModelCursor(self.cadetBranches, House)
 
 
     def get_sworn_members(self):
-        return None
+        return ModelCursor(self.swornMembers, Character)
 
 
 
