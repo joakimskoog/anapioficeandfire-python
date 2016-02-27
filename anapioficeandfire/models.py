@@ -18,6 +18,8 @@ class ModelCursor(object):
         self.current_index = 0
         return self
 
+    def next(self):
+        return self.__next__()
 
     def __next__(self):
         if self.current_index == self.total_number_of_urls:
