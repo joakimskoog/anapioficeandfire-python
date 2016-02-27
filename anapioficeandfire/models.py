@@ -4,6 +4,7 @@ try:
 except:
     import settings
     from utils import query
+    import ujson as json
 
 
 class ModelCursor(object):
