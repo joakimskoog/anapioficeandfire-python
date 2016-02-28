@@ -6,9 +6,9 @@ Installation
 
 At the command line::
 
-    $ easy_install anapioficeandfire-python
+    $ easy_install anapioficeandfire
 
 Or, if you have virtualenvwrapper installed::
 
-    $ mkvirtualenv anapioficeandfire-python
-    $ pip install anapioficeandfire-python
+    $ mkvirtualenv anapioficeandfire
+    $ pip install anapioficeandfire

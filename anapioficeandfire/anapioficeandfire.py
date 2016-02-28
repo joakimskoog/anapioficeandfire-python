@@ -22,6 +22,7 @@ def _get(id, model_type):
     result = query("{0}/{1}/{2}".format(settings.API_BASE_URL, model_type,str(id)))
     return result
 
+
 def get_book(book_id):
     ''' Return a single book '''
     result = _get(book_id, 'books')
