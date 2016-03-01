@@ -49,10 +49,10 @@ lint:
 	flake8 anapioficeandfire tests
 
 test:
-	nosetests tests/test_anapioficeandfire.py
+	nosetests tests/test_api.py
 
 coverage:
-	nosetests tests/test_anapioficeandfire.py --with-coverage --cover-package=anapioficeandfire
+	nosetests tests/test_api.py --with-coverage --cover-package=anapioficeandfire
 	coverage html
 	open htmlcov/index.html
 

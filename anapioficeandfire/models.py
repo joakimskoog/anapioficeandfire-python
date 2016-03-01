@@ -1,101 +1,135 @@
+# -*- coding: utf-8 -*-
+
 try:
-    from anapioficeandfire.utils import query
-    import ujson as json
+    from anapioficeandfire.cursor import Cursor
 except:
-    import settings
-    from utils import query
-    import ujson as json
+    from cursor import Cursor
+
+class Model(object):
+
+    def __init__(self, api=None):
+        self.api = api
+
+    @classmethod
+    def parse(cls, api, json_data):
+        raise NotImplementedError()
+
+    @classmethod
+    def parse_list(cls, api, json_data):
+        results = []
+
+        for data in json_data:
+            if data:
+                results.append(cls.parse(api, data))
+        return results
+
+    @classmethod
+    def retrieve_id(cls, url):
+        index_of_last_slash = url.rindex('/')
+        id = url[index_of_last_slash+1:]
+
+        return id
+
+    @classmethod
+    def retrieve_ids(cls, urls):
+        return list(map(cls.retrieve_id, urls))
 
 
-class ModelCursor(object):
+class Book(Model):
 
-    def __init__(self, urls, model):
-        self.urls = urls
-        self.total_number_of_urls = len(urls)
-        self.model = model
-
-    def __iter__(self):
-        self.current_index = 0
-        return self
-
-    def next(self):
-        return self.__next__()
-
-    def __next__(self):
-        if self.current_index == self.total_number_of_urls:
-            raise StopIteration
-
-        data = query(self.urls[self.current_index])
-
-        if len(data.content) == 0:
-            raise StopIteration
-
-        self.current_index += 1
-        return self.model(data.content)
-
-
-class BaseModel(object):
-
-    def __init__(self, api_data):
-        json_data = json.loads(api_data)
-
+    @classmethod
+    def parse(cls, api, json_data):
+        book = cls(api)
         for key, value in json_data.items():
-            setattr(self, key, value)
+            setattr(book, key, value)
 
-
-class Book(BaseModel):
-
-    def __init__(self, api_data):
-        super(Book, self).__init__(api_data)
+        return book
 
     def get_characters(self):
-        return ModelCursor(self.characters, Character)
+        ids = Model.retrieve_ids(self.characters)
+        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
     def get_pov_characters(self):
-        return ModelCursor(self.povCharacters, Character)
+        ids = Model.retrieve_ids(self.povCharacters)
+        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
 
+        return cursor.items()
 
-class Character(BaseModel):
+class Character(Model):
 
-    def __init__(self, api_data):
-        super(Character, self).__init__(api_data)
+    @classmethod
+    def parse(cls, api, json_data):
+        character = cls(api)
+        for key, value in json_data.items():
+            setattr(character, key, value)
+
+        return character
 
     def get_allegiances(self):
-        return ModelCursor(self.allegiances, House)
+        ids = Model.retrieve_ids(self.allegiances)
+        cursor = Cursor(self.api.get_house, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
     def get_books(self):
-        return ModelCursor(self.books, Book)
+        ids = Model.retrieve_ids(self.books)
+        cursor = Cursor(self.api.get_book, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
     def get_pov_books(self):
-        return ModelCursor(self.povBooks, Book)
+        ids = Model.retrieve_ids(self.povBooks)
+        cursor = Cursor(self.api.get_book, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
 
-class House(BaseModel):
+class House(Model):
 
-    def __init__(self, api_data):
-        super(House, self).__init__(api_data)
+    @classmethod
+    def parse(cls, api, json_data):
+        house = cls(api)
+        for key, value in json_data.items():
+            setattr(house, key, value)
+
+        return house
 
     def get_current_lord(self):
-        response = query(self.currentLord)
-        return Character(response.content)
+        id = Model.retrieve_id(self.currentLord)
+        return self.api.get_character(id=id)
 
     def get_heir(self):
-        response = query(self.heir)
-        return Character(response.content)
+        id = Model.retrieve_id(self.heir)
+        return self.api.get_character(id=id)
 
     def get_overlord(self):
-        response = query(self.overlord)
-        return House(response.content)
+        id = Model.retrieve_id(self.overlord)
+        return self.api.get_house(id=id)
 
     def get_founder(self):
-        response = query(self.founder)
-        return Character(response.content)
+        id = Model.retrieve_id(self.founder)
+        return self.api.get_character(id=id)
 
     def get_cadet_branches(self):
-        return ModelCursor(self.cadetBranches, House)
+        ids = Model.retrieve_ids(self.cadetBranches)
+        cursor = Cursor(self.api.get_house, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
     def get_sworn_members(self):
-        return ModelCursor(self.swornMembers, Character)
+        ids = Model.retrieve_ids(self.swornMembers)
+        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
+
+        return cursor.items()
 
 
+class ModelFactory(object):
+    book = Book
+    character = Character
+    house = House
+
+    def create(self, model_type):
+        return getattr(self, model_type)
 
