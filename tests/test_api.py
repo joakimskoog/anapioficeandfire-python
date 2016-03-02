@@ -1,4 +1,5 @@
-import datetime
+# -*- coding: utf-8 -*-
+
 from anapioficeandfire import cursor
 
 try:

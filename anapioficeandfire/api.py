@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 try:
     from anapioficeandfire.binder import bind_api

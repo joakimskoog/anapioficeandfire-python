@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 
 try:
     from anapioficeandfire.error import AnApiOfIceAndFireError
