@@ -2,13 +2,18 @@
 
 import unittest
 from anapioficeandfire import cursor
+from anapioficeandfire import api
 
 try:
     from anapioficeandfire.utils import convert_to_utf8_str
 except:
     from utils import convert_to_utf8_str
 
-class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
+
+class AnApiOfIceAndFireTests(unittest.TestCase):
+
+    def setUp(self):
+        self.api = api.API()
 
     def test_get_books(self):
         pages = list(cursor.Cursor(self.api.get_books).pages())
@@ -143,8 +148,3 @@ class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
         number_of_sworn_members = len(list(house_kenning.get_sworn_members().items()))
 
         self.assertGreater(number_of_sworn_members, 0)
-
-
-class AnApiOfIceAndFireTestCase(unittest.TestCase):
-    def setUp(self):
-        self.api = api.API()
