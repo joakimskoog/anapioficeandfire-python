@@ -1,11 +1,13 @@
 import datetime
 from anapioficeandfire import cursor
-from dateutil.parser import parse
 
 try:
     from tests.configuration import AnApiOfIceAndFireTestCase
+    from dateutil.parser import parse
 except:
     from configuration import AnApiOfIceAndFireTestCase
+    from parser import parse
+
 
 class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
     def test_get_books(self):
