@@ -3,11 +3,8 @@ from anapioficeandfire import cursor
 
 try:
     from tests.configuration import AnApiOfIceAndFireTestCase
-    from dateutil.parser import parse
 except:
     from configuration import AnApiOfIceAndFireTestCase
-    from parser import parse
-
 
 class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
     def test_get_books(self):
@@ -26,17 +23,17 @@ class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
                 self.assertEquals('A Game of Thrones', book.name)
 
     def test_get_books_with_from_release_date(self):
-        release_date = datetime.date(2015,1,1)
+        release_date = '2015-1-1'
         for page in cursor.Cursor(self.api.get_books, from_release_date=release_date).pages():
             for book in page:
-                self.assertGreater(parse(book.released).date(), release_date)
+                self.assertGreater(book.released, release_date)
 
     def test_get_books_with_to_release_date(self):
-        release_date = datetime.date(2000,1,1)
+        release_date = '2000-1-1'
 
         for page in cursor.Cursor(self.api.get_books, to_release_date=release_date).pages():
             for book in page:
-                self.assertLess(parse(book.released).date(), release_date)
+                self.assertLess(book.released, release_date)
 
     def test_get_book(self):
         game_of_thrones = self.api.get_book(id=1)
