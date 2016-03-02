@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import unittest
 from anapioficeandfire import cursor
 
 try:
-    from tests.configuration import AnApiOfIceAndFireTestCase
     from anapioficeandfire.utils import convert_to_utf8_str
 except:
-    from configuration import AnApiOfIceAndFireTestCase
     from utils import convert_to_utf8_str
 
 class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
@@ -144,3 +143,8 @@ class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
         number_of_sworn_members = len(list(house_kenning.get_sworn_members().items()))
 
         self.assertGreater(number_of_sworn_members, 0)
+
+
+class AnApiOfIceAndFireTestCase(unittest.TestCase):
+    def setUp(self):
+        self.api = api.API()
