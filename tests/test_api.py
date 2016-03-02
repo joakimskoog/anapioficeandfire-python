@@ -108,6 +108,51 @@ class AnApiOfIceAndFireTests(unittest.TestCase):
         number_of_pov_books = len(list(catelyn_stark.get_pov_books().items()))
         self.assertEquals(3, number_of_pov_books)
 
+    def test_get_houses(self):
+        pages = list(cursor.Cursor(self.api.get_houses).pages(limit=2))
+
+        self.assertEquals(len(pages), 2)
+
+    def test_get_houses_with_name(self):
+        for page in cursor.Cursor(self.api.get_houses, name='House Stark of Winterfell').pages():
+            for house in page:
+                self.assertEquals(house.name, 'House Stark of Winterfell')
+
+    def test_get_houses_with_region(self):
+        for page in cursor.Cursor(self.api.get_houses, region='The North').pages():
+            for house in page:
+                self.assertEquals(house.region, 'The North')
+
+    def test_get_houses_with_words(self):
+        for page in cursor.Cursor(self.api.get_houses, words='Winter is Coming').pages():
+            for house in page:
+                self.assertEquals(house.words, 'Winter is Coming')
+
+    def test_get_houses_with_has_words(self):
+        for page in cursor.Cursor(self.api.get_houses, has_words=True).pages():
+            for house in page:
+                self.assertTrue(house.words)
+
+    def test_get_houses_with_has_titles(self):
+        for page in cursor.Cursor(self.api.get_houses, has_titles=True).pages():
+            for house in page:
+                self.assertTrue(house.titles)
+
+    def test_get_houses_with_has_seats(self):
+        for page in cursor.Cursor(self.api.get_houses, has_seats=True).pages():
+            for house in page:
+                self.assertTrue(house.seats)
+
+    def test_get_houses_with_has_died_out(self):
+        for page in cursor.Cursor(self.api.get_houses, has_died_out=True).pages():
+            for house in page:
+                self.assertTrue(house.diedOut)
+
+    def test_get_houses_with_has_ancestral_weapons(self):
+        for page in cursor.Cursor(self.api.get_houses, has_ancestral_weapons=True).pages():
+            for house in page:
+                self.assertTrue(house.ancestralWeapons)
+
     def test_get_house(self):
         house_targaryen = self.api.get_house(id=378)
         self.assertEquals(house_targaryen.name, 'House Targaryen of King\'s Landing')

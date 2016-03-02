@@ -81,6 +81,19 @@ class API(object):
                         iteration_mode='id')
 
     @property
+    def get_houses(self):
+        """ Return pages with houses that matches the given parameters
+
+        :return:
+        """
+        return bind_api(api=self,
+                        path='/houses',
+                        model_type='house',
+                        allowed_parameters=['page', 'name', 'region', 'words', 'has_words', 'has_titles', 'has_seats', 'has_died_out', 'has_ancestral_weapons'],
+                        is_data_list=True,
+                        iteration_mode='page')
+
+    @property
     def get_house(self):
         """ Return a single house
 
