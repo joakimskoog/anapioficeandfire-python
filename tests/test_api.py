@@ -68,17 +68,17 @@ class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
                 self.assertEquals('Northmen', character.culture)
 
     def test_get_characters_with_born(self):
-        for page in cursor.Cursor(self.api.get_characters, born='In or between 253 AC and 272 AC').pages(1):
+        for page in cursor.Cursor(self.api.get_characters, born='In or between 253 AC and 272 AC').pages(limit=1):
             for character in page:
                 self.assertEquals('In or between 253 AC and 272 AC', character.born)
 
     def test_get_characters_with_died(self):
-        for page in cursor.Cursor(self.api.get_characters, died='In 299 AC, at the Twins').pages(1):
+        for page in cursor.Cursor(self.api.get_characters, died='In 299 AC, at the Twins').pages(limit=1):
             for character in page:
                 self.assertEquals('In 299 AC, at the Twins', character.died)
 
     def test_get_characters_alive(self):
-        for page in cursor.Cursor(self.api.get_characters, is_alive=True).pages(1):
+        for page in cursor.Cursor(self.api.get_characters, is_alive=True).pages(limit=1):
             for character in page:
                 self.assertTrue(not character.died)
 
