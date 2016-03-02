@@ -28,6 +28,19 @@ class API(object):
         self.parser = parser or ModelParser(model_factory or ModelFactory())
 
     @property
+    def get_books(self):
+        """ Return pages with books that matches the given parameters
+
+        :return:
+        """
+        return bind_api(api=self,
+                        path = '/books',
+                        model_type='book',
+                        allowed_parameters=['page', 'name', 'from_release_date', 'to_release_date'],
+                        is_data_list=True,
+                        iteration_mode='page')
+
+    @property
     def get_book(self):
         """ Return a single book
 
@@ -37,7 +50,8 @@ class API(object):
         return bind_api(api = self,
                         path = '/books/{id}',
                         model_type = 'book',
-                        allowed_parameters=['id'])
+                        allowed_parameters=['id'],
+                        iteration_mode='id')
 
     @property
     def get_character(self):
@@ -49,7 +63,8 @@ class API(object):
         return bind_api(api=self,
                         path='/characters/{id}',
                         model_type='character',
-                        allowed_parameters=['id'])
+                        allowed_parameters=['id'],
+                        iteration_mode='id')
 
     @property
     def get_house(self):
@@ -61,5 +76,6 @@ class API(object):
         return bind_api(api=self,
                         path='/houses/{id}',
                         model_type='house',
-                        allowed_parameters=['id'])
+                        allowed_parameters=['id'],
+                        iteration_mode='id')
 

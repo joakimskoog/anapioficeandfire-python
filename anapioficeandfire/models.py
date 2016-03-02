@@ -47,15 +47,15 @@ class Book(Model):
 
     def get_characters(self):
         ids = Model.retrieve_ids(self.characters)
-        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_character, ids=ids)
 
-        return cursor.items()
+        return cursor
 
     def get_pov_characters(self):
         ids = Model.retrieve_ids(self.povCharacters)
-        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_character, ids=ids)
 
-        return cursor.items()
+        return cursor
 
 class Character(Model):
 
@@ -69,21 +69,21 @@ class Character(Model):
 
     def get_allegiances(self):
         ids = Model.retrieve_ids(self.allegiances)
-        cursor = Cursor(self.api.get_house, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_house, ids=ids)
 
-        return cursor.items()
+        return cursor
 
     def get_books(self):
         ids = Model.retrieve_ids(self.books)
-        cursor = Cursor(self.api.get_book, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_book, ids=ids)
 
-        return cursor.items()
+        return cursor
 
     def get_pov_books(self):
         ids = Model.retrieve_ids(self.povBooks)
-        cursor = Cursor(self.api.get_book, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_book, ids=ids)
 
-        return cursor.items()
+        return cursor
 
 
 class House(Model):
@@ -114,15 +114,15 @@ class House(Model):
 
     def get_cadet_branches(self):
         ids = Model.retrieve_ids(self.cadetBranches)
-        cursor = Cursor(self.api.get_house, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_house, ids=ids)
 
-        return cursor.items()
+        return cursor
 
     def get_sworn_members(self):
         ids = Model.retrieve_ids(self.swornMembers)
-        cursor = Cursor(self.api.get_character, ids=ids, iteration_mode='url')
+        cursor = Cursor(self.api.get_character, ids=ids)
 
-        return cursor.items()
+        return cursor
 
 
 class ModelFactory(object):

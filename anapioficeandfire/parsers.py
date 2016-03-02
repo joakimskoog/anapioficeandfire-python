@@ -30,6 +30,7 @@ class ModelParser(JSONParser):
         if model is None:
             raise AnApiOfIceAndFireError('No model for the type: ' + method.model_type)
 
+
         json = JSONParser.parse(self, method, data)
 
         if method.is_data_list:
