@@ -54,6 +54,19 @@ class API(object):
                         iteration_mode='id')
 
     @property
+    def get_characters(self):
+        """ Return pages with characters that matches the given parameters
+
+        :return:
+        """
+        return bind_api(api=self,
+                        path='/characters',
+                        model_type='character',
+                        allowed_parameters=['page', 'name', 'culture', 'born', 'died', 'is_alive'],
+                        is_data_list=True,
+                        iteration_mode='page')
+
+    @property
     def get_character(self):
         """ Return a single character
 

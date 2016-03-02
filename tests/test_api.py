@@ -7,6 +7,7 @@ except:
     from configuration import AnApiOfIceAndFireTestCase
 
 class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
+
     def test_get_books(self):
         pages = list(cursor.Cursor(self.api.get_books).pages())
 
@@ -50,6 +51,36 @@ class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
         game_of_thrones = self.api.get_book(id=1)
         number_pof_pov_characters = len(list(game_of_thrones.get_pov_characters().items()))
         self.assertEquals(9, number_pof_pov_characters)
+
+    def test_get_characters(self):
+        pages = list(cursor.Cursor(self.api.get_characters).pages(limit=2))
+
+        self.assertEquals(len(pages), 2)
+
+    def test_get_characters_with_name(self):
+        for page in cursor.Cursor(self.api.get_characters, name='Jon Snow').pages():
+            for character in page:
+                self.assertEquals('Jon Snow', character.name)
+
+    def test_get_characters_with_culture(self):
+        for page in cursor.Cursor(self.api.get_characters, culture='Northmen').pages(limit=2):
+            for character in page:
+                self.assertEquals('Northmen', character.culture)
+
+    def test_get_characters_with_born(self):
+        for page in cursor.Cursor(self.api.get_characters, born='In or between 253 AC and 272 AC').pages(1):
+            for character in page:
+                self.assertEquals('In or between 253 AC and 272 AC', character.born)
+
+    def test_get_characters_with_died(self):
+        for page in cursor.Cursor(self.api.get_characters, died='In 299 AC, at the Twins').pages(1):
+            for character in page:
+                self.assertEquals('In 299 AC, at the Twins', character.died)
+
+    def test_get_characters_alive(self):
+        for page in cursor.Cursor(self.api.get_characters, is_alive=True).pages(1):
+            for character in page:
+                self.assertTrue(not character.died)
 
     def test_get_character(self):
         jon_snow = self.api.get_character(id=583)
