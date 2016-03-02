@@ -1,7 +1,11 @@
 import datetime
 from anapioficeandfire import cursor
-from tests.configuration import AnApiOfIceAndFireTestCase
 from dateutil.parser import parse
+
+try:
+    from tests.configuration import AnApiOfIceAndFireTestCase
+except:
+    from configuration import AnApiOfIceAndFireTestCase
 
 class AnApiOfIceAndFireTests(AnApiOfIceAndFireTestCase):
     def test_get_books(self):
