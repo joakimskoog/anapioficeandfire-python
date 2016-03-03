@@ -21,7 +21,7 @@ At the command line::
 First example
 ============
 
-.. code-block:: python
+.. code-block :: python
 
    import anapioficeandfire
 
@@ -30,3 +30,5 @@ First example
    jon_snow = api.get_character(id=583)
    for title in jon_snow.aliases:
        print(title)
+
+This example will download all data about the character Jon Snow and print each one of his aliases to the console.
