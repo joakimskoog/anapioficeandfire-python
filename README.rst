@@ -2,8 +2,8 @@
 anapioficeandfire-python
 ===============================
 
-.. image:: https://img.shields.io/pypi/v/anapioficeandfire-python.svg
-        :target: https://pypi.python.org/pypi/anapioficeandfire-python
+.. image:: https://img.shields.io/pypi/v/anapioficeandfire.svg
+        :target: https://pypi.python.org/pypi/anapioficeandfire
 
 .. image:: https://img.shields.io/travis/joakimskoog/anapioficeandfire-python.svg
         :target: https://travis-ci.org/joakimskoog/anapioficeandfire-python
