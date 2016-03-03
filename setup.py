@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='anapioficeandfire',
-    version='0.1.1',
+    version='0.1.2',
     description="A Python helper library for anapioficeandfire.com",
     long_description=readme + '\n\n' + history,
     author="Joakim Skoog",

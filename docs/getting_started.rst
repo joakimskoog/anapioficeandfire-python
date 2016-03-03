@@ -18,4 +18,15 @@ At the command line::
 
     $ pip install anapioficeandfire
 
+First example
+============
 
+.. code-block:: python
+
+   import anapioficeandfire
+
+   api = anapioficeandfire.API()
+
+   jon_snow = api.get_character(id=583)
+   for title in jon_snow.aliases:
+       print(title)
