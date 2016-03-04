@@ -14,6 +14,7 @@ Contents:
    getting_started
    installation
    usage
+   api
    contributing
    authors
    history
