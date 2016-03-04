@@ -44,7 +44,7 @@ Models
 When an API method is invoked the response will be an apioficeandfire model class instance. The model will contain the data returned from An API of Ice And Fire which you can then use inside your applications. For example, the following code returns a :class:`Book` model::
 
    # Get a Book object form An API of Ice And Fire
-   jon_snow = api.get_book(id=1)
+   game_of_thrones = api.get_book(id=1)
    
 For detailed information about the models, please refer to :ref:`Models Reference <models_reference>`. 
 
