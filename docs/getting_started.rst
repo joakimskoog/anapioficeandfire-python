@@ -35,7 +35,18 @@ This example will download all data about the character Jon Snow and print each 
 
 API
 ============
-The API class provides access to the entire An API of Ice And Fire in a clean and "pythonic" way. Each method accepts various parameters and return responses. Fore detailed information about the methods, please refer to :ref:`API Reference <api_reference>`.
+
+The API class provides access to the entire An API of Ice And Fire in a clean and "pythonic" way. Each method accepts various parameters and return responses. For detailed information about the methods, please refer to :ref:`API Reference <api_reference>`.
 
 Models
 ============
+
+When an API method is invoked the response will be an apioficeandfire model class instance. The model will contain the data returned from An API of Ice And Fire which you can then use inside your applications. For example, the following code returns a :class:`Book` model::
+
+   # Get a Book object form An API of Ice And Fire
+   jon_snow = api.get_book(id=1)
+   
+For detailed information about the models, please refer to :ref:`Models Reference <models_reference>`. 
+
+
+
