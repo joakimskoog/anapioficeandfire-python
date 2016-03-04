@@ -14,6 +14,7 @@ Contents:
    getting_started
    api
    models
+   cursor
    contributing
    authors
    history
