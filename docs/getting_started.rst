@@ -18,6 +18,13 @@ At the command line::
 
     $ pip install anapioficeandfire
 
+Usage
+============
+
+To use anapioficeandfire in a project::
+
+    import anapioficeandfire
+
 First example
 ============
 
@@ -45,8 +52,8 @@ When an API method is invoked the response will be an apioficeandfire model clas
 
    # Get a Book object form An API of Ice And Fire
    game_of_thrones = api.get_book(id=1)
-   
-For detailed information about the models, please refer to :ref:`Models Reference <models_reference>`. 
+
+For detailed information about the models, please refer to :ref:`Models Reference <models_reference>`.
 
 
 
