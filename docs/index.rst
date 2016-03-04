@@ -15,6 +15,7 @@ Contents:
    installation
    usage
    api
+   models
    contributing
    authors
    history
