@@ -32,3 +32,10 @@ First example
        print(title)
 
 This example will download all data about the character Jon Snow and print each one of his aliases to the console.
+
+API
+============
+The API class provides access to the entire An API of Ice And Fire in a clean and "pythonic" way. Each method accepts various parameters and return responses. Fore detailed information about the methods, please refer to :ref:`API Reference <api_reference>`.
+
+Models
+============
