@@ -29,8 +29,7 @@ class ModelParser(JSONParser):
             return
         model = self.model_factory.create(method.model_type)
         if model is None:
-            raise AnApiOfIceAndFireError('No model for the type: ' + method.model_type)
-
+            raise AnApiOfIceAndFireError('No model for: ' + method.model_type)
 
         json = JSONParser.parse(self, method, data)
 
@@ -38,6 +37,3 @@ class ModelParser(JSONParser):
             return model.parse_list(method.api, json)
         else:
             return model.parse(method.api, json)
-
-
-

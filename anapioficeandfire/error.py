@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class AnApiOfIceAndFireError(Exception):
 
     def __init__(self, reason, response=None):

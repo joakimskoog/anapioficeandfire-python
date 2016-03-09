@@ -16,8 +16,8 @@ except:
 
 re_path_template = re.compile('{\w+}')
 
-def bind_api(**config):
 
+def bind_api(**config):
     class APIRequest(object):
         api = config['api']
         path = config['path']
@@ -31,11 +31,11 @@ def bind_api(**config):
         def __init__(self, kwargs):
             self.parser = kwargs.pop('parser', self.api.parser)
 
-            #Set the header so that we can get statistics on the usage
+            # Set the header so that we can get statistics on the usage
             self.session.headers['User-Agent'] = 'anapioficeandfire-python'
 
-            #Set the Accept header to show the API that we want to use version 1 of the API.
-            self.session.headers['Accept'] ='application/vnd.anapioficeandfire+json; version={0}'.format(self.api.api_version)
+            # Versioning via the header
+            self.session.headers['Accept'] = 'application/vnd.anapioficeandfire+json; version={0}'.format(self.api.api_version)
 
             self.build_parameters(kwargs)
             self.build_path()
@@ -46,8 +46,7 @@ def bind_api(**config):
                     continue
                 try:
                     if key in self.allowed_parameters:
-
-                        #We need to convert parameter keys to camelCase because the API uses camelCase convention
+                        # We need to convert parameter keys to camelCase because the API uses camelCase convention
                         camel_case_key = to_camel_case(key)
                         self.session.params[camel_case_key] = convert_to_utf8_str(value)
                 except IndexError:
@@ -61,7 +60,6 @@ def bind_api(**config):
                 except KeyError:
                     raise AnApiOfIceAndFireError('No parameter value found for path variable: %s' % name)
 
-                #Remove the parameter since it won't be used as an URL parameter
                 del self.session.params[name]
                 self.path = self.path.replace(variable, value)
 
@@ -70,7 +68,7 @@ def bind_api(**config):
 
             try:
                 response = self.session.request(self.method, url)
-            except Exception as e:
+            except Exception:
                 raise AnApiOfIceAndFireError('Failed to send request')
 
             result = self.parser.parse(self, response.text)
@@ -82,11 +80,9 @@ def bind_api(**config):
 
         return request.execute()
 
-
     if APIRequest.iteration_mode == 'id':
         _call.iteration_mode = 'id'
-    elif  APIRequest.iteration_mode == 'page':
+    elif APIRequest.iteration_mode == 'page':
         _call.iteration_mode = 'page'
-
 
     return _call

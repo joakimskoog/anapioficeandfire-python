@@ -11,16 +11,14 @@ except:
 
 
 class API(object):
-
     def __init__(self,
                  host='anapioficeandfire.com/api',
-                 api_version = 1,
-                 parser = None,
-                 model_factory = None):
-
+                 api_version=1,
+                 parser=None,
+                 model_factory=None):
         """ Api instance Constructor
 
-        :param host: url of the server of the rest api, default: 'anapioficeandfire.com/api'
+        :param host: url to the api, default: 'anapioficeandfire.com/api'
         :param api_version: version of the api, default: 1
         """
 
@@ -35,7 +33,7 @@ class API(object):
         :return:
         """
         return bind_api(api=self,
-                        path = '/books',
+                        path='/books',
                         model_type='book',
                         allowed_parameters=['page', 'name', 'from_release_date', 'to_release_date'],
                         is_data_list=True,
@@ -48,9 +46,9 @@ class API(object):
         :param id: the id of the book
         :return: Book object
         """
-        return bind_api(api = self,
-                        path = '/books/{id}',
-                        model_type = 'book',
+        return bind_api(api=self,
+                        path='/books/{id}',
+                        model_type='book',
                         allowed_parameters=['id'],
                         iteration_mode='id')
 
@@ -89,7 +87,8 @@ class API(object):
         return bind_api(api=self,
                         path='/houses',
                         model_type='house',
-                        allowed_parameters=['page', 'name', 'region', 'words', 'has_words', 'has_titles', 'has_seats', 'has_died_out', 'has_ancestral_weapons'],
+                        allowed_parameters=['page', 'name', 'region', 'words', 'has_words', 'has_titles', 'has_seats',
+                                            'has_died_out', 'has_ancestral_weapons'],
                         is_data_list=True,
                         iteration_mode='page')
 
@@ -105,4 +104,3 @@ class API(object):
                         model_type='house',
                         allowed_parameters=['id'],
                         iteration_mode='id')
-

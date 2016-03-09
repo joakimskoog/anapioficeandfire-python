@@ -5,6 +5,7 @@ try:
 except:
     from cursor import Cursor
 
+
 class Model(object):
 
     def __init__(self, api=None):
@@ -56,6 +57,7 @@ class Book(Model):
         cursor = Cursor(self.api.get_character, ids=ids)
 
         return cursor
+
 
 class Character(Model):
 
@@ -132,4 +134,3 @@ class ModelFactory(object):
 
     def create(self, model_type):
         return getattr(self, model_type)
-

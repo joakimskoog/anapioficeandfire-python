@@ -11,7 +11,6 @@ except:
 
 
 class AnApiOfIceAndFireTests(unittest.TestCase):
-
     def setUp(self):
         self.api = api.API()
 
@@ -77,7 +76,8 @@ class AnApiOfIceAndFireTests(unittest.TestCase):
     def test_get_characters_with_born(self):
         for page in cursor.Cursor(self.api.get_characters, born='In or between 253 AC and 272 AC').pages(limit=1):
             for character in page:
-                self.assertEquals(convert_to_utf8_str('In or between 253 AC and 272 AC'), convert_to_utf8_str(character.born))
+                self.assertEquals(convert_to_utf8_str('In or between 253 AC and 272 AC'),
+                                  convert_to_utf8_str(character.born))
 
     def test_get_characters_with_died(self):
         for page in cursor.Cursor(self.api.get_characters, died='In 299 AC, at the Twins').pages(limit=1):
@@ -180,7 +180,6 @@ class AnApiOfIceAndFireTests(unittest.TestCase):
         founder = house_stark.get_founder()
 
         self.assertEquals('Brandon Stark', founder.name)
-
 
     def test_get_house_cadet_branches(self):
         house_kenning = self.api.get_house(id=218)

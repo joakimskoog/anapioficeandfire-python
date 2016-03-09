@@ -5,6 +5,7 @@ try:
 except:
     from error import AnApiOfIceAndFireEror
 
+
 class Cursor(object):
 
     def __init__(self, method, **kwargs):
@@ -46,7 +47,6 @@ class Cursor(object):
             raise AnApiOfIceAndFireError('This method does not support iterating over pages')
 
         return self.iterator
-
 
 
 class IdIterator(object):
