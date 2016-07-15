@@ -35,7 +35,9 @@ def bind_api(**config):
             self.session.headers['User-Agent'] = 'anapioficeandfire-python'
 
             # Versioning via the header
-            self.session.headers['Accept'] = 'application/vnd.anapioficeandfire+json; version={0}'.format(self.api.api_version)
+            self.session.headers['Accept'] \
+                = ('application/vnd.anapioficeandfire+json;'
+                   'version={0}').format(self.api.api_version)
 
             self.build_parameters(kwargs)
             self.build_path()
@@ -46,9 +48,11 @@ def bind_api(**config):
                     continue
                 try:
                     if key in self.allowed_parameters:
-                        # We need to convert parameter keys to camelCase because the API uses camelCase convention
+                        # We need to convert parameter keys to camelCase
+                        # because the API uses camelCase convention
                         camel_case_key = to_camel_case(key)
-                        self.session.params[camel_case_key] = convert_to_utf8_str(value)
+                        self.session.params[camel_case_key] \
+                            = convert_to_utf8_str(value)
                 except IndexError:
                     raise AnApiOfIceAndFireError('Invalid parameters supplied')
 
@@ -58,7 +62,9 @@ def bind_api(**config):
                 try:
                     value = quote(self.session.params[name])
                 except KeyError:
-                    raise AnApiOfIceAndFireError('No parameter value found for path variable: %s' % name)
+                    raise AnApiOfIceAndFireError(
+                        'No parameter value found for path variable: {}'
+                        .format(name))
 
                 del self.session.params[name]
                 self.path = self.path.replace(variable, value)

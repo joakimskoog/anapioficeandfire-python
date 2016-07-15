@@ -35,7 +35,9 @@ class API(object):
         return bind_api(api=self,
                         path='/books',
                         model_type='book',
-                        allowed_parameters=['page', 'name', 'from_release_date', 'to_release_date'],
+                        allowed_parameters=['page', 'name',
+                                            'from_release_date',
+                                            'to_release_date'],
                         is_data_list=True,
                         iteration_mode='page')
 
@@ -61,7 +63,8 @@ class API(object):
         return bind_api(api=self,
                         path='/characters',
                         model_type='character',
-                        allowed_parameters=['page', 'name', 'culture', 'born', 'died', 'is_alive'],
+                        allowed_parameters=['page', 'name', 'culture', 'born',
+                                            'died', 'is_alive'],
                         is_data_list=True,
                         iteration_mode='page')
 
@@ -87,8 +90,10 @@ class API(object):
         return bind_api(api=self,
                         path='/houses',
                         model_type='house',
-                        allowed_parameters=['page', 'name', 'region', 'words', 'has_words', 'has_titles', 'has_seats',
-                                            'has_died_out', 'has_ancestral_weapons'],
+                        allowed_parameters=['page', 'name', 'region', 'words',
+                                            'has_words', 'has_titles',
+                                            'has_seats', 'has_died_out',
+                                            'has_ancestral_weapons'],
                         is_data_list=True,
                         iteration_mode='page')
 
