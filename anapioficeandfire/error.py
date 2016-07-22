@@ -4,7 +4,7 @@
 class AnApiOfIceAndFireError(Exception):
 
     def __init__(self, reason, response=None):
-        self.reason = response
+        self.reason = reason
         self.response = response
         Exception.__init__(self, reason)
 
