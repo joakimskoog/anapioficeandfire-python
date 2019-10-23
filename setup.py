@@ -15,7 +15,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'ujson==1.35', 'requests==2.9.1', 'six==1.10.0'
+    'ujson==1.35', 'requests==2.20.0', 'six==1.10.0'
 ]
 
 test_requirements = [
